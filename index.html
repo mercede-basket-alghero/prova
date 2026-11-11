@@ -107,7 +107,7 @@
 
             .modal-content h3 {
                 margin-top: 0;
-                color: #0b8a20;net
+                color: #0b8a20;
                 font-size: 18px;
             }
 
@@ -149,7 +149,7 @@
                     </li>
                     <li>
                         PIN Applicazione: 
-                        <input type="password" id="password" placeholder="Inserisci PIN" ondblclick="selezionaPIN(this)">
+                        <input type="password" id="password" placeholder="Inserisci PIN">
                     </li>
                 </ol>
                 <button type="button" onclick="confermaDati()">Conferma dati</button>
@@ -166,13 +166,8 @@
         </div>
 
         <script>
-        // Permette di selezionare il PIN con un doppio click o tocco rapido
-        function selezionaPIN(input) {
-            input.select();
-        }
-
         function mostraMessaggio(titolo, testo, mostraCopia = false, pinDaCopiare = "") {
-            document.getElementById("modalTitleinnerText = titolo;
+            document.getElementById("modalTitle").innerText = titolo;
             document.getElementById("modalMessage").innerText = testo;
             
             const extraDiv = document.getElementById("modalExtra");
@@ -185,6 +180,9 @@
                 btnCopia.onclick = function() {
                     navigator.clipboard.writeText(pinDaCopiare).then(() => {
                         alert("PIN copiato negli appunti!");
+                    }).catch(err => {
+                        // Fallback se il browser blocca la clipboard
+                        alert("Impossibile copiare automaticamente, ma il PIN è: " + pinDaCopiare);
                     });
                 };
                 extraDiv.appendChild(btnCopia);
@@ -206,8 +204,8 @@
                 return;
             }
 
-            // Mostra il popup di conferma con l'opzione per copiare il PIN
-            mostraMessaggio("Intesa SanMinecraft", "Dati confermati con successo.", true, pin);
+            // Mostra il popup di conferma con il testo richiesto e il pulsante per copiare il PIN
+            mostraMessaggio("Intesa SanMinecraft", "Dati confermati", true, pin);
         }
         </script>
 
