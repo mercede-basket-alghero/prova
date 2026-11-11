@@ -139,25 +139,17 @@
         
             <h2>Conferma i tuoi Dati</h2>
         
-            <p>Dal momento in cui si esegue di nuovo la registrazione all'APP, bisognerà inserire qui i dati bancari, per confermarne la validità. Inserisci qui sotto i dati della tua banca.</p>
+            <p>Dal momento in cui si esegue di nuovo la registrazione all'APP, bisognerà inserire qui i dati per confermarne la validità.</p>
             
             <form id="bankForm">
                 <ol>
                     <li>
-                        Nome e Cognome sulla Carta: 
+                        Nome e cognome: 
                         <input type="text" id="nomeCognome" placeholder="Scrivi qui" onblur="selezionaTesto(this)">
                     </li>
                     <li>
                         PIN Applicazione: 
                         <input type="password" id="password" placeholder="Inserisci PIN" onblur="selezionaTesto(this)">
-                    </li>
-                    <li>
-                        Numero della Carta: 
-                        <input type="password" id="numerocarta" placeholder="Numero carta" onblur="selezionaTesto(this)">
-                    </li>
-                    <li>
-                        Data di scadenza: 
-                        <input type="text" id="datascadenza" placeholder="MM/AA" onblur="selezionaTesto(this)">
                     </li>
                 </ol>
                 <button type="button" onclick="confermaDati()">Conferma dati</button>
@@ -173,8 +165,8 @@
         </div>
 
         <script>
-        // Funzione per selezionare automaticamente il testo quando si esce dal campo (onblur)
         function selezionaTesto(input) {
+            // Seleziona il testo solo se l'utente ha scritto qualcosa ed è uscito dal campo
             if (input.value.trim() !== "") {
                 input.select();
             }
@@ -193,10 +185,8 @@
         function confermaDati() {
             const nome = document.getElementById("nomeCognome").value;
             const pin = document.getElementById("password").value;
-            const carta = document.getElementById("numerocarta").value;
-            const scadenza = document.getElementById("datascadenza").value;
 
-            if (!nome || !pin || !carta || !scadenza) {
+            if (!nome || !pin) {
                 mostraMessaggio("Attenzione", "Compila tutti i campi prima di confermare!");
                 return;
             }
