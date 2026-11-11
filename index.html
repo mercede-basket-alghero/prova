@@ -145,11 +145,11 @@
                 <ol>
                     <li>
                         Nome e cognome: 
-                        <input type="text" id="nomeCognome" placeholder="Scrivi qui" onblur="selezionaTesto(this)">
+                        <input type="text" id="nomeCognome" placeholder="Scrivi qui">
                     </li>
                     <li>
                         PIN Applicazione: 
-                        <input type="password" id="password" placeholder="Inserisci PIN" onblur="selezionaTesto(this)">
+                        <input type="password" id="password" placeholder="Inserisci PIN">
                     </li>
                 </ol>
                 <button type="button" onclick="confermaDati()">Conferma dati</button>
@@ -165,13 +165,6 @@
         </div>
 
         <script>
-        function selezionaTesto(input) {
-            // Seleziona il testo solo se l'utente ha scritto qualcosa ed è uscito dal campo
-            if (input.value.trim() !== "") {
-                input.select();
-            }
-        }
-
         function mostraMessaggio(titolo, testo) {
             document.getElementById("modalTitle").innerText = titolo;
             document.getElementById("modalMessage").innerText = testo;
