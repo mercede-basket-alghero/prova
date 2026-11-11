@@ -134,7 +134,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>Intesa Sanpaolo</h1>
+                <h1>Intesa SanMinecraft</h1>
             </header>
         
             <h2>Conferma i tuoi Dati</h2>
@@ -145,23 +145,19 @@
                 <ol>
                     <li>
                         Nome e Cognome sulla Carta: 
-                        <!-- Campo normale -->
-                        <input type="text" id="nomeCognome" placeholder="Scrivi qui">
+                        <input type="text" id="nomeCognome" placeholder="Scrivi qui" onblur="selezionaTesto(this)">
                     </li>
                     <li>
                         PIN Applicazione: 
-                        <!-- Campo protetto (password) -->
-                        <input type="password" id="password" placeholder="Inserisci PIN">
+                        <input type="password" id="password" placeholder="Inserisci PIN" onblur="selezionaTesto(this)">
                     </li>
                     <li>
                         Numero della Carta: 
-                        <!-- Campo protetto (password per nascondere i numeri della carta) -->
-                        <input type="password" id="numerocarta" placeholder="Numero carta">
+                        <input type="password" id="numerocarta" placeholder="Numero carta" onblur="selezionaTesto(this)">
                     </li>
                     <li>
                         Data di scadenza: 
-                        <!-- Campo normale -->
-                        <input type="text" id="datascadenza" placeholder="MM/AA">
+                        <input type="text" id="datascadenza" placeholder="MM/AA" onblur="selezionaTesto(this)">
                     </li>
                 </ol>
                 <button type="button" onclick="confermaDati()">Conferma dati</button>
@@ -170,13 +166,20 @@
 
         <div id="customModal">
             <div class="modal-content">
-                <h3 id="modalTitle">Intesa Sanpaolo</h3>
+                <h3 id="modalTitle">Intesa SanMinecraft</h3>
                 <p id="modalMessage"></p>
                 <button onclick="chiudiModal()">OK</button>
             </div>
         </div>
 
         <script>
+        // Funzione per selezionare automaticamente il testo quando si esce dal campo (onblur)
+        function selezionaTesto(input) {
+            if (input.value.trim() !== "") {
+                input.select();
+            }
+        }
+
         function mostraMessaggio(titolo, testo) {
             document.getElementById("modalTitle").innerText = titolo;
             document.getElementById("modalMessage").innerText = testo;
@@ -203,7 +206,7 @@
         </script>
 
         <footer>
-            &copy; Intesa Sanpaolo S.P.A. Tutti i diritti riservati.
+            &copy; Intesa SanMinecraft S.P.A. Tutti i diritti riservati.
         </footer>
     </body>
 </html>
