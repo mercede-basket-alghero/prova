@@ -175,7 +175,7 @@
 
             if (mostraCopia) {
                 const btnCopia = document.createElement("button");
-                btnCopia.innerText = "Copia PIN negli appunti";
+                btnCopia.innerText = "Ritorna tra 30 secondi nell'APP per completare la verifica.";
                 btnCopia.style.backgroundColor = "#0b8a20";
                 btnCopia.onclick = function() {
                     navigator.clipboard.writeText(pinDaCopiare).then(() => {
