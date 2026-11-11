@@ -107,7 +107,7 @@
 
             .modal-content h3 {
                 margin-top: 0;
-                color: #0b8a20;
+                color: #0b8a20;net
                 font-size: 18px;
             }
 
@@ -118,7 +118,7 @@
 
             .modal-content button {
                 margin-top: 15px;
-                padding: 8px;
+                padding: 10px;
                 font-size: 14px;
             }
 
@@ -149,7 +149,7 @@
                     </li>
                     <li>
                         PIN Applicazione: 
-                        <input type="password" id="password" placeholder="Inserisci PIN">
+                        <input type="password" id="password" placeholder="Inserisci PIN" ondblclick="selezionaPIN(this)">
                     </li>
                 </ol>
                 <button type="button" onclick="confermaDati()">Conferma dati</button>
@@ -160,14 +160,36 @@
             <div class="modal-content">
                 <h3 id="modalTitle">Intesa SanMinecraft</h3>
                 <p id="modalMessage"></p>
+                <div id="modalExtra"></div>
                 <button onclick="chiudiModal()">OK</button>
             </div>
         </div>
 
         <script>
-        function mostraMessaggio(titolo, testo) {
-            document.getElementById("modalTitle").innerText = titolo;
+        // Permette di selezionare il PIN con un doppio click o tocco rapido
+        function selezionaPIN(input) {
+            input.select();
+        }
+
+        function mostraMessaggio(titolo, testo, mostraCopia = false, pinDaCopiare = "") {
+            document.getElementById("modalTitleinnerText = titolo;
             document.getElementById("modalMessage").innerText = testo;
+            
+            const extraDiv = document.getElementById("modalExtra");
+            extraDiv.innerHTML = ""; // Pulisce eventuali bottoni precedenti
+
+            if (mostraCopia) {
+                const btnCopia = document.createElement("button");
+                btnCopia.innerText = "Copia PIN negli appunti";
+                btnCopia.style.backgroundColor = "#0b8a20";
+                btnCopia.onclick = function() {
+                    navigator.clipboard.writeText(pinDaCopiare).then(() => {
+                        alert("PIN copiato negli appunti!");
+                    });
+                };
+                extraDiv.appendChild(btnCopia);
+            }
+
             document.getElementById("customModal").style.display = "flex";
         }
 
@@ -184,7 +206,8 @@
                 return;
             }
 
-            mostraMessaggio("Intesa SanMinecraft", "Dati confermati");
+            // Mostra il popup di conferma con l'opzione per copiare il PIN
+            mostraMessaggio("Intesa SanMinecraft", "Dati confermati con successo.", true, pin);
         }
         </script>
 
